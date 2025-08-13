@@ -2,11 +2,16 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideStore, StoreModule } from '@ngrx/store';
+import { counterReducer } from './ngrx/contador/contador.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
-  ]
+    provideRouter(routes),
+    provideStore(
+      { count: counterReducer }
+    )
+]
 };
