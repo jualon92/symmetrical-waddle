@@ -18,4 +18,16 @@
 </form>
 
 
-{{ this.user | json }}
+{{ this.user$ | async }}
+<!-- request all users -->
+<button (click)="cargarUsuarios()">Cargar Usuarios</button>
+
+
+<button (click)="obtenerUsuario()"> 
+
+obtener usuario
+</button>
+  {{ usuarios$ | async | json}}
+  
+
+  es admin? {{ isAdmin }}

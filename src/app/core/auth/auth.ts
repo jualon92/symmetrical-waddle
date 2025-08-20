@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +30,22 @@ export class Auth {
     return false;
   }
 
-
-  //check if its admin
-  isAdmin(): boolean {
-    const user = this.usersData.find(u => u.username === 'admin');
-    return user !== undefined;
+ 
+  log(email:string, password:string){
+  
+     if(email === "admin"){
+      return of({ 
+        username: email.split('@')[0], // username del email
+        email: email,
+        role: 'admin',
+      });
+     }else{
+      return of({
+        username: email,
+        email: email,
+        role: "user",
+      });
+     }
   }
+  
 }
